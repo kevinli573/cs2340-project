@@ -61,7 +61,7 @@ public class BanditAlert {
         Text fleeText = new Text("You can try to flee back to the previous region. "
                 + " The higher your pilot skill, the more likely it is that you'll succeed"
                 + " and escape the bandit. \nIf you succeed: \n~ You'll still lose fuel but"
-                + "your credit and items are safe."
+                + " your credit and items are safe."
                 + " \nIf you fail to flee: \n~ The bandit will take your credits"
                 + "and damage your ship.");
         formatActions(fleeBox, flee, fleeText);
@@ -72,7 +72,7 @@ public class BanditAlert {
         Button fight = new Button("Fight");
         Text fightText = new Text("You can try to fight off the bandit."
                 + "The higher your fight skill, the more likely it is"
-                + "that you will defeat the bandit."
+                + " that you will defeat the bandit."
                 + " \nIf you successfully fight off the bandit: "
                 + "\n~ You can travel to your intended location"
                 + " with no consequences and you will be awarded some of the bandit's credits."
@@ -166,6 +166,7 @@ public class BanditAlert {
                 ship.setHealth((int) (ship.getHealth() * 0.85));
             } else { //make inventory  empty
                 ship.clearInventoryQuantity();
+                ship.setCargo(0);
             }
         } else {
             variables.setCredits(variables.getCredits() - robAmount);

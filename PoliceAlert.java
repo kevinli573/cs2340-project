@@ -96,6 +96,7 @@ public class PoliceAlert {
         });
         flee.setOnAction(e -> {
             goBack.set(fleeBack(ship));
+            ship.setCargo(0);
             window.close();
         });
 

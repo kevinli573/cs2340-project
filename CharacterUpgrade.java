@@ -21,10 +21,10 @@ public class CharacterUpgrade {
             1, 2, 0, 0,  150);
     private static ArrayList<CharacterCustomItems> equipmentList
             = new ArrayList<CharacterCustomItems>() {{
-                    add(coolShades);
-                    add(hardHat);
-                    add(combatHelmet);
-                }};
+        add(coolShades);
+        add(hardHat);
+        add(combatHelmet);
+    }};
     private static CharacterCustomItems fancyTux = new CharacterCustomItems("Fancy Tux", 1,
             0, 4, 0,  300);
     private static CharacterCustomItems safetyVest = new CharacterCustomItems("Safety Vest", 1,
@@ -33,10 +33,10 @@ public class CharacterUpgrade {
             5, 0, 0,  300);
     private static ArrayList<CharacterCustomItems> armorList
             = new ArrayList<CharacterCustomItems>() {{
-                    add(fancyTux);
-                    add(safetyVest);
-                    add(combatSuit);
-                }};
+        add(fancyTux);
+        add(safetyVest);
+        add(combatSuit);
+    }};
     private static CharacterCustomItems laser = new CharacterCustomItems("Laser Gun", 2,
             2, 0, 0,  200);
     private static CharacterCustomItems rocketLauncher = new CharacterCustomItems("Rocket Launcher",
@@ -45,10 +45,10 @@ public class CharacterUpgrade {
             4, 0, 0,  200);
     private static ArrayList<CharacterCustomItems> weaponList
             = new ArrayList<CharacterCustomItems>() {{
-                    add(laser);
-                    add(rocketLauncher);
-                    add(minigun);
-                }};
+        add(laser);
+        add(rocketLauncher);
+        add(minigun);
+    }};
     public static void display(String title, double screenWidth, double screenHeight) {
         Stage window = new Stage();
         window.setTitle(title);
@@ -145,10 +145,10 @@ public class CharacterUpgrade {
     }
 
     private static HBox layoutOfSpecialConfig(String configurationName,
-                                               ArrayList<CharacterCustomItems> specialItems,
-                                               Text pilotLabel, Text fighterLabel,
-                                               Text merchantLabel, Text engineerLabel,
-                                               Text credits) {
+                                              ArrayList<CharacterCustomItems> specialItems,
+                                              Text pilotLabel, Text fighterLabel,
+                                              Text merchantLabel, Text engineerLabel,
+                                              Text credits) {
         HBox totalBox = new HBox();
         totalBox.setPadding(new Insets(0, 0, variables.getScreenHeight() * 0.05, 0));
         totalBox.setPrefWidth(variables.getScreenWidth() * 0.7);

@@ -25,6 +25,7 @@ public class Marketplace {
     private Item machine = new Item("Machine", 15, rand.nextInt(25));
     private Item narcotic = new Item("Narcotic", 4, rand.nextInt(25));
     private Item robot = new Item("Robot", 20, rand.nextInt(25));
+    private Item fuelItem = new Item("Fuel", 0, rand.nextInt(25));
 
 
     public Marketplace(Planet planet) {
@@ -51,6 +52,8 @@ public class Marketplace {
                 / (1 + variables.getMerchantNum()) / 50);
         robot.setBuyPrice((rand.nextInt(15) + 15) * priceLevel
                 / (1 + variables.getMerchantNum()) / 50);
+        fuelItem.setBuyPrice((rand.nextInt(5) + 1) * priceLevel
+                / (1 + variables.getMerchantNum()) / 50);
 
         water.setSellPrice(water.getBuyPrice() * (rand.nextInt(10) + 70) / 100);
         fur.setSellPrice(fur.getBuyPrice() * (rand.nextInt(10) + 70) / 100);
@@ -62,6 +65,7 @@ public class Marketplace {
         machine.setSellPrice(machine.getBuyPrice() * (rand.nextInt(10) + 70) / 100);
         narcotic.setSellPrice(narcotic.getBuyPrice() * (rand.nextInt(10) + 70) / 100);
         robot.setSellPrice(robot.getBuyPrice() * (rand.nextInt(10) + 70) / 100);
+        fuelItem.setSellPrice(fuelItem.getBuyPrice() * (rand.nextInt(10) + 70) / 100);
     }
 
     private void fillItems() {
@@ -238,6 +242,52 @@ public class Marketplace {
                 }
             }
         }
+        HBox fuelBox = new HBox();
+        Label fuelBuyPrice = new Label(fuelItem.getBuyPrice() + "");
+        fuelBuyPrice.setMinWidth(105);
+        Label fuelLabel = new Label("Fuel");
+        fuelLabel.setMinWidth(55);
+        fuelBox.getChildren().add(fuelLabel);
+
+        fuelBox.getChildren().add(fuelItem.getBuy());
+        fuelBox.getChildren().add(fuelBuyPrice);
+
+
+
+        Label quantityFuel = new Label("Quantity: " + fuelItem.getQuantity() + "");
+        quantityFuel.setMinWidth(35);
+        fuelBox.getChildren().add(quantityFuel);
+        fuelItem.getBuy().setOnAction(e -> {
+            if (fuelItem.getQuantity() > 0 && (variables.getCredits()
+                    - fuelItem.getBuyPrice() > 0) && (ship.getFuel() + 5.0 <= ship.getFuelCapacity())) {
+                fuelItem.setQuantity(fuelItem.getQuantity() - 1);
+                fuelBox.getChildren().remove(quantityFuel);
+                quantityFuel.setText("Quantity: " + fuelItem.getQuantity() + "");
+                fuelBox.getChildren().add(quantityFuel);
+                ship.setFuel(ship.getFuel() + 5.0);
+                variables.setCredits((variables.getCredits()
+                        - fuelItem.getBuyPrice()));
+                shipV.getChildren().clear();
+                shipH.getChildren().clear();
+                credits.setText("Credits: " + variables.getCredits());
+                cargo.setText("Cargo: " + ship.getCargo()
+                        + "/" + ship.getCargoCapacity());
+                fuel.setText("Fuel: " + ship.getFuel() + "/" + ship.getFuelCapacity());
+                health.setText("Health: " + ship.getHealth()
+                        + "/" + ship.getHealthMax());
+                shipV.getChildren().addAll(label, credits, cargo, fuel, health);
+                for (int n = 0; n < labelShip.size(); n++) {
+                    //shipH.getChildren().clear();
+                    labelShip.get(n).setText("");
+                    labelShip.get(n).setText(ship.getInventory().get(n).getName()
+                            + ": " + ship.getInventory().get(n).getQuantity());
+                    shipV.getChildren().add(labelShip.get(n));
+                }
+            }
+        });
+
+
+        marketPlaceV.getChildren().add(fuelBox);
 
         VBox marketTotal = new VBox();
         marketTotal.getChildren().addAll(marketPlaceV, shipV);

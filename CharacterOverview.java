@@ -12,7 +12,7 @@ import javafx.stage.Stage;
 public class CharacterOverview extends Application {
     public static void main(String[] args) {
         String filePath = "Music\\spaceMusic.wav";
-        
+
         AudioCode audioObj = new AudioCode();
         audioObj.playMusic(filePath);
         launch();

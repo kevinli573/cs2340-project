@@ -15,7 +15,7 @@ import java.util.concurrent.atomic.AtomicInteger;
 public class CharacterConfiguration extends Application {
     public static void main(String[] args) {
         String filePath = "Music\\spaceMusic.wav";
-        
+
         AudioCode audioObj = new AudioCode();
         audioObj.playMusic(filePath);
         launch();
